@@ -3,12 +3,6 @@ import { addBooksToDb } from "./sqlite/db_methods.js";
 import { addCategoryToDb } from "./sqlite/db_methods.js";
 
 
-// class PuppeteerManager {
-//   constructor(browser) {
-//       this.browser = browser
-      
-//   }
-
 (async () => {
   const browser = await launch(
     { headless: false },
@@ -29,13 +23,11 @@ import { addCategoryToDb } from "./sqlite/db_methods.js";
 
     return links;
   });
-  
-  //   console.log(categoryLinks);
-  //let categoryBookMap = {};
+
 
   for (let category in categoryLinks) {
     await addCategoryToDb(category);
-    //const newPage = await browser.newPage();
+    
     try {
       await page.goto(categoryLinks[category]);
 
@@ -78,24 +70,19 @@ import { addCategoryToDb } from "./sqlite/db_methods.js";
           category: category.toString(),
         });
 
-        // bookList.push({
-        //   name: name,
-        //   price: price,
-        //   rating: rating,
-        //   category: category,
-        // });
+        
       }
 
-      // categoryBookMap[category] = bookList;
+      
     } catch (err) {
       console.error(err);
     } finally {
-      //await newPage.close();
+      
     }
-    break;
+    //break;
   }
 
-  //console.log(categoryBookMap);
+  
 
   await browser.close();
 })();

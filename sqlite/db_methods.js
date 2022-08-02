@@ -37,5 +37,5 @@ export function addCategoryToDb(category) {
       return console.error(err.message);
     }
   });
-  // close the database connection
+  
 }
